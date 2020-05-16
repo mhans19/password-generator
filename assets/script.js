@@ -5,9 +5,6 @@ var characterType = [
   {type: "numchar", indicator: 0},
   {type: "specchar", indicator: 0}];
 
- var passlength; 
- var includeChar;
-
 // PASSWORD LENGTH
 var PasswordLength = function() {
   // Prompt user to input length of password (between 8 and 128 charcters). If user input is outside of range, prompt again.
@@ -78,6 +75,12 @@ var generatePassword = function() {
   }
 
   console.log(includeChar)
+
+  var randomPassword = "";
+  for (var i = 0; i < 8; i++){
+    randomPassword += includeChar.charAt(Math.floor(Math.random() * includeChar.length))
+  }
+  console.log(randomPassword)
 }
 
 
