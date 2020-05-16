@@ -45,7 +45,7 @@ var promptCharacters = function() {
       window.alert('You selected NO.');
     } else{
       window.alert("You need to provide a valid answer! Please try again.");
-      return promptCharacters();
+      return promptCharacters(); // would be useful to not return to the beginning of the prompts but to start at the place it broke
     }
   }  
 }
@@ -65,7 +65,7 @@ var mainRun = function() {
   var alltypes = characterType[0].indicator + characterType[1].indicator + characterType[2].indicator + characterType[3].indicator;
 
   if (alltypes > 0){
-    window.alert("Thank you for your input, you selected: " + alltypes);
+    window.alert("Thank you for your input. Now, let's generate your new, random password.")     // would be useful to prompt the types where indicators were greater than 1.
   } else {
     window.alert("Please select at least one character type.");
     return mainRun();
