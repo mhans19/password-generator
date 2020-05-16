@@ -1,8 +1,21 @@
 // GLOBAL VARIABLES
-var lowerindicator = 0;
-var upperindicator = 0;
-var numindicator = 0;
-var specindicator = 0;
+var characterType = [
+  {
+    type: "lowercase",
+    indicator: 0
+  },
+  {
+    type: "uppercase",
+    indicator: 0
+  },
+  {
+    type: "numchar",
+    indicator: 0
+  },
+  {
+    type: "specchar",
+    indicator: 0
+  }];
 
 // PASSWORD LENGTH
 var PasswordLength = function() {
@@ -16,80 +29,25 @@ var PasswordLength = function() {
   }
 }
 
-// LOWERCASE CHARACTERS
-var LowerCase = function() {
-  // Prompt user to identify any lowercase characters.
-  var lowercase = window.prompt('Should the password include lowercase characters? Please enter "Yes" or "No"');
+// CHARACTER PROMPTS
+var promptCharacters = function() {
+  for (var i = 0; i < characterType.length; i++) {
+    var pickedCharObj = characterType[i];
+    
+    // Prompt user to identify any lowercase characters.
+    var selection = window.prompt('Should the password include ' + pickedCharObj.type + ' characters? Please enter "Yes" or "No"');
 
-  // Change input to lowercase
-  lowercase = lowercase.toLowerCase();
-
-  // Conditional Recursive Function Call
-  if (lowercase === "yes"){
-    lowerindicator++;
-  } else if (lowercase === "no"){
-    return true;
-  } else{
-    window.alert("You need to provide a valid answer! Please try again.");
-    return LowerCase();
-  }
-}
-
-// UPPERCASE CHARACTERS
-var UpperCase = function() {
-  // Prompt user to identify any lowercase characters.
-  var uppercase = window.prompt('Should the password include uppercase characters? Please enter "Yes" or "No"');
-
-  // Change input to lowercase
-  uppercase = uppercase.toLowerCase();
-
-  // Conditional Recursive Function Call
-  if (uppercase === "yes"){
-    upperindicator++;
-  } else if (uppercase === "no"){
-    return true;
-  } else{
-    window.alert("You need to provide a valid answer! Please try again.");
-    return UpperCase();
-  }
-}
-
-// NUMERIC CHARACTERS
-var NumChar = function() {
-  // Prompt user to identify any lowercase characters.
-  var numchar = window.prompt('Should the password include numeric characters? Please enter "Yes" or "No"');
-
-  // Change input to lowercase
-  numchar = numchar.toLowerCase();
-
-  // Conditional Recursive Function Call
-  if (numchar === "yes"){
-    numindicator++;
-  } else if (numchar === "no"){
-    return true;
-  } else{
-    window.alert("You need to provide a valid answer! Please try again.");
-    return NumChar();
-  }
-}
-
-// SPECIAL CHARACTERS
-var SpecChar = function() {
-  // Prompt user to identify any lowercase characters.
-  var specchar = window.prompt('Should the password include special characters? Please enter "Yes" or "No"');
-
-  // Change input to lowercase
-  specchar = specchar.toLowerCase();
-
-  // Conditional Recursive Function Call
-  if (specchar === "yes"){
-    specindicator++;
-  } else if (specchar === "no"){
-    return true;
-  } else{
-    window.alert("You need to provide a valid answer! Please try again.");
-    return SpecChar();
-  }
+    // Conditional Recursive Function Call
+    if (selection.toLowerCase() === "yes"){
+      window.alert('You selected YES.');
+      pickedCharObj.indicator +=1;
+    } else if (selection === "no"){
+      window.alert('You selected NO.');
+    } else{
+      window.alert("You need to provide a valid answer! Please try again.");
+      return promptCharacters();
+    }
+  }  
 }
 
 // PROCESS FUNCTION
@@ -101,16 +59,13 @@ var mainRun = function() {
   PasswordLength();
 
   // Prompt user to input character types.
-  LowerCase();
-  UpperCase();
-  NumChar();
-  SpecChar();
+  promptCharacters();
 
   // Determine if at least one character type should was selected.
-  var alltypes = lowerindicator + upperindicator + numindicator + specindicator
+  var alltypes = characterType[0].indicator + characterType[1].indicator + characterType[2].indicator + characterType[3].indicator;
 
   if (alltypes > 0){
-    "Thank you for your input."
+    window.alert("Thank you for your input, you selected: " + alltypes);
   } else {
     window.alert("Please select at least one character type.");
     return mainRun();
