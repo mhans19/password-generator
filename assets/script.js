@@ -1,21 +1,12 @@
 // GLOBAL VARIABLES
 var characterType = [
-  {
-    type: "lowercase",
-    indicator: 0
-  },
-  {
-    type: "uppercase",
-    indicator: 0
-  },
-  {
-    type: "numchar",
-    indicator: 0
-  },
-  {
-    type: "specchar",
-    indicator: 0
-  }];
+  {type: "lowercase", indicator: 0},
+  {type: "uppercase", indicator: 0},
+  {type: "numchar", indicator: 0},
+  {type: "specchar", indicator: 0}];
+
+ var passlength; 
+ var includeChar;
 
 // PASSWORD LENGTH
 var PasswordLength = function() {
@@ -50,6 +41,48 @@ var promptCharacters = function() {
   }  
 }
 
+// Generate Password
+var generatePassword = function() {
+  //use if else to determine character strings to include
+
+  if (characterType[1].indicator === 1 && characterType[2].indicator === 1 && characterType[3].indicator === 1) {           // Lower, Upper, Numeric, and Special
+    var includeChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  } else if (characterType[1].indicator === 1 && characterType[2].indicator === 1 && characterType[3].indicator === 1) {    // Upper, Numeric, and Special  
+    var includeChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  } else if (characterType[0].indicator === 1 && characterType[1].indicator === 1 && characterType[2].indicator === 1) {    // Lower, Upper, and Numeric
+    var includeChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  } else if (characterType[0].indicator === 1 && characterType[2].indicator === 1 && characterType[3].indicator === 1) {    // Lower, numeric, and Special
+    var includeChar = "abcdefghijklmnopqrstuvwxyz0123456789!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  } else if (characterType[0].indicator === 1 && characterType[1].indicator === 1 && characterType[3].indicator === 1) {    // Lower, Upper, and Special
+    var includeChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  } else if (characterType[0].indicator === 1 && characterType[1].indicator === 1) {                                        // Lowercase and Uppercase
+    var includeChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  } else if (characterType[0].indicator === 1 && characterType[2].indicator === 1) {                                        // Lowercase and Numeric
+    var includeChar = "abcdefghijklmnopqrstuvwxyz0123456789";
+  } else if (characterType[0].indicator === 1 && characterType[3].indicator === 1) {                                        // Lowercase and Special
+    var includeChar = "abcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  } else if (characterType[1].indicator === 1 && characterType[2].indicator === 1) {                                        // Uppercase and Numeric
+    var includeChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  } else if (characterType[1].indicator === 1 && characterType[3].indicator === 1) {                                        // Uppercase and Special
+    var includeChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  } else if (characterType[2].indicator === 1 && characterType[3].indicator === 1) {                                        // Numeric and Special
+    var includeChar = "0123456789!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  } else if (characterType[0].indicator === 1) {                                                                            // Lowercase
+    var includeChar = "abcdefghijklmnopqrstuvwxyz";
+  } else if (characterType[1].indicator === 1) {                                                                            // Uppercase
+    var includeChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  } else if (characterType[2].indicator === 1) {                                                                            // Numeric
+    var includeChar = "0123456789";
+  } else {                                                                                                                  // Special
+    var includeChar = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  }
+
+  console.log(includeChar)
+}
+
+
+
+
 // PROCESS FUNCTION
 var mainRun = function() {
   // Prompt users they are about to create a new password.
@@ -70,10 +103,23 @@ var mainRun = function() {
     window.alert("Please select at least one character type.");
     return mainRun();
   }
+
+  // Generate password
+  generatePassword();
 }
 
 // CALL FUNCTION
 mainRun();
+
+
+
+
+
+
+
+
+
+
 
 // Get references to the #generate element
 //var generateBtn = document.querySelector("#generate");
@@ -84,7 +130,6 @@ mainRun();
   //var passwordText = document.querySelector("#password");
 
   //passwordText.value = password;
-
 //}
 
 // Add event listener to generate button
