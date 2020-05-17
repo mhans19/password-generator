@@ -28,15 +28,16 @@ var promptCharacters = function() {
   for (var i = 0; i < characterType.length; i++) {
     var pickedCharObj = characterType[i];
     
-    // Prompt user to identify any lowercase characters.
+    // Prompt user to identify character types.
     var selection = window.prompt('Should the password include ' + pickedCharObj.type + ' characters? Please enter "Yes" or "No"');
 
     // Conditional Recursive Function Call
     if (selection.toLowerCase() === "yes"){
-      window.alert('You selected YES.');
+      //window.alert('You selected YES.');
       pickedCharObj.indicator +=1;
     } else if (selection === "no"){
-      window.alert('You selected NO.');
+      //window.alert('You selected NO.');
+      pickedCharObj.indicator += 0;
     } else{
       window.alert("You need to provide a valid answer! Please try again.");
       return promptCharacters(); // would be useful to not return to the beginning of the prompts but to start at the place it broke
@@ -90,8 +91,7 @@ var generatePassword = function() {
 
 // PROCESS FUNCTION
 var writePassword = function() {
-  // reset for new password
-  
+
 
   // Prompt users they are about to create a new password.
   window.alert("You are about to generate a random password, but first, let's gather some more information about the password.");
@@ -117,10 +117,10 @@ var writePassword = function() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+}
 
   // Get references to the #generate element
   var generateBtn = document.querySelector("#generate");
-
+  
   // Add event listener to generate button
   generateBtn.addEventListener("click", writePassword);
-}
