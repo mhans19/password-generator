@@ -30,6 +30,13 @@ var PasswordLength = function() {
 
 // CHARACTER PROMPTS
 var promptCharacters = function() {
+  //Reset global values
+  characterType[0].indicator = 0;
+  characterType[1].indicator = 0;
+  characterType[2].indicator = 0;
+  characterType[3].indicator = 0;
+  passcharacters = "";
+
   for (var i = 0; i < characterType.length; i++) {
     var pickedCharObj = characterType[i];
 
@@ -47,6 +54,15 @@ var promptCharacters = function() {
       return promptCharacters(); // would be useful to not return to the beginning of the prompts but to start at the place it broke
     }
   }  
+  // Determine if at least one character type should was selected.
+  var alltypes = characterType[0].indicator + characterType[1].indicator + characterType[2].indicator + characterType[3].indicator;
+
+  if (alltypes > 0){
+    window.alert("Thank you for your input. Now, let's generate your new, random password.")
+  } else {
+    window.alert("Please select at least one character type.");
+    return promptCharacters();
+  }
 }
 
 // Generate Password
@@ -72,16 +88,6 @@ var writePassword = function() {
 
   // Prompt user to input character types.
   promptCharacters();
-
-  // Determine if at least one character type should was selected.
-  var alltypes = characterType[0].indicator + characterType[1].indicator + characterType[2].indicator + characterType[3].indicator;
-
-  if (alltypes > 0){
-    window.alert("Thank you for your input. Now, let's generate your new, random password.")
-  } else {
-    window.alert("Please select at least one character type.");
-    return writePassword();
-  }
 
   // Generate password
   var password = generatePassword();
