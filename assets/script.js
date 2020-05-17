@@ -1,7 +1,7 @@
 // GLOBAL VARIABLES
 var characterType = [
   {type: "lowercase", 
-  indicator: 0}
+  indicator: 0},
   {type: "uppercase", 
   indicator: 0},
   {type: "numchar", 
@@ -91,7 +91,7 @@ var generatePassword = function() {
 // PROCESS FUNCTION
 var writePassword = function() {
   // reset for new password
-  characterType.reset();
+  
 
   // Prompt users they are about to create a new password.
   window.alert("You are about to generate a random password, but first, let's gather some more information about the password.");
