@@ -1,8 +1,8 @@
 # Module 3: Weekly Challenge<br>
 <br>
 # Deployment<br>
-Website URL: https://mhans19.github.io/hansen-portfolio/<br>
-github URL for Repository: https://github.com/mhans19/hansen-portfolio<br>
+Website URL: https://mhans19.github.io/password-generator/<br>
+github URL for Repository: https://github.com/mhans19/password-generator<br>
 <br>
 # Built With * HTML * CSS * JavaScript<br>
 # Contributors Morgan Hansen<br>
