@@ -1,14 +1,20 @@
 // GLOBAL VARIABLES
 var characterType = [
-  {type: "lowercase", indicator: 0},
-  {type: "uppercase", indicator: 0},
-  {type: "numchar", indicator: 0},
-  {type: "specchar", indicator: 0}];
+  {type: "lowercase", 
+  indicator: 0}
+  {type: "uppercase", 
+  indicator: 0},
+  {type: "numchar", 
+  indicator: 0},
+  {type: "specchar", 
+  indicator: 0}];
+
+var passlength;
 
 // PASSWORD LENGTH
 var PasswordLength = function() {
   // Prompt user to input length of password (between 8 and 128 charcters). If user input is outside of range, prompt again.
-  var passlength = window.prompt('How many characters should the password be? (Between 8 and 128)');
+  passlength = window.prompt('How many characters should the password be? (Between 8 and 128)');
 
   // Conditional Recursive Function Call
   if (passlength < 8 || passlength > 128 || passlength === "" || passlength === null) {
@@ -74,20 +80,19 @@ var generatePassword = function() {
     var includeChar = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
   }
 
-  console.log(includeChar)
-
   var randomPassword = "";
-  for (var i = 0; i < 8; i++){
+  for (var i = 0; i < passlength; i++){
     randomPassword += includeChar.charAt(Math.floor(Math.random() * includeChar.length))
   }
-  console.log(randomPassword)
+
+  return randomPassword;
 }
 
-
-
-
 // PROCESS FUNCTION
-var mainRun = function() {
+var writePassword = function() {
+  // reset for new password
+  characterType.reset();
+
   // Prompt users they are about to create a new password.
   window.alert("You are about to generate a random password, but first, let's gather some more information about the password.");
 
@@ -104,36 +109,18 @@ var mainRun = function() {
     window.alert("Thank you for your input. Now, let's generate your new, random password.")     // would be useful to prompt the types where indicators were greater than 1.
   } else {
     window.alert("Please select at least one character type.");
-    return mainRun();
+    return writePassword();
   }
 
   // Generate password
-  generatePassword();
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
+  // Get references to the #generate element
+  var generateBtn = document.querySelector("#generate");
+
+  // Add event listener to generate button
+  generateBtn.addEventListener("click", writePassword);
 }
-
-// CALL FUNCTION
-mainRun();
-
-
-
-
-
-
-
-
-
-
-
-// Get references to the #generate element
-//var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-//function writePassword() {
-  //var password = generatePassword();
-  //var passwordText = document.querySelector("#password");
-
-  //passwordText.value = password;
-//}
-
-// Add event listener to generate button
-//generateBtn.addEventListener("click", writePassword);
