@@ -6,10 +6,10 @@ var characterType = [
   {type: "uppercase", 
   indicator: 0,
   characters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
-  {type: "numchar", 
+  {type: "number", 
   indicator: 0,
   characters: "0123456789"},
-  {type: "specchar", 
+  {type: "special", 
   indicator: 0,
   characters: "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"}];
 
@@ -32,7 +32,7 @@ var PasswordLength = function() {
 var promptCharacters = function() {
   for (var i = 0; i < characterType.length; i++) {
     var pickedCharObj = characterType[i];
-    
+
     // Prompt user to identify character types.
     var selection = window.prompt('Should the password include ' + pickedCharObj.type + ' characters? Please enter "Yes" or "No"');
 
@@ -64,8 +64,6 @@ var generateBtn = document.querySelector("#generate");
 
 // PROCESS FUNCTION
 var writePassword = function() {
-
-
   // Prompt users they are about to create a new password.
   window.alert("You are about to generate a random password, but first, let's gather some more information about the password.");
 
@@ -79,7 +77,7 @@ var writePassword = function() {
   var alltypes = characterType[0].indicator + characterType[1].indicator + characterType[2].indicator + characterType[3].indicator;
 
   if (alltypes > 0){
-    window.alert("Thank you for your input. Now, let's generate your new, random password.")     // would be useful to prompt the types where indicators were greater than 1.
+    window.alert("Thank you for your input. Now, let's generate your new, random password.")
   } else {
     window.alert("Please select at least one character type.");
     return writePassword();
