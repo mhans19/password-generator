@@ -47,8 +47,10 @@ var promptCharacters = function() {
     if (selection.toLowerCase() === "yes"){
       pickedCharObj.indicator +=1;
       passcharacters += pickedCharObj.characters;
+      window.alert('You selected yes.');
     } else if (selection === "no"){
       pickedCharObj.indicator += 0;
+      window.alert('You selected no.');
     } else{
       window.alert("You need to provide a valid answer! Please try again.");
       return promptCharacters(); // would be useful to not return to the beginning of the prompts but to start at the place it broke
